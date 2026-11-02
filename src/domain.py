@@ -24,9 +24,9 @@ class LimiteDiarioExcedido(Exception):
 
 @dataclass(frozen=True)
 class Liquidacion:
-    precio: Decimal = Decimal("200")
-    comision: Decimal = Decimal("40")
-    monto_tutor: Decimal = Decimal("160")
+    precio: Decimal = Decimal(200)
+    comision: Decimal = Decimal(40)
+    monto_tutor: Decimal = Decimal(160)
 
 
 @dataclass(frozen=True)

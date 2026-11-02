@@ -34,9 +34,9 @@ def test_cp04_sesion_de_90_minutos_se_completa_y_liquida():
 
     # Assert
     assert sesion.estado == "Completada"
-    assert liquidacion.precio == Decimal("200")
-    assert liquidacion.comision == Decimal("40")
-    assert liquidacion.monto_tutor == Decimal("160")
+    assert liquidacion.precio == Decimal(200)
+    assert liquidacion.comision == Decimal(40)
+    assert liquidacion.monto_tutor == Decimal(160)
 
 
 def test_cp05_sesion_de_45_minutos_es_rechazada_por_duracion():

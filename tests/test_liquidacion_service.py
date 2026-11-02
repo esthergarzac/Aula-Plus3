@@ -32,7 +32,7 @@ def test_cp08_sesion_completa_transfiere_160_al_tutor():
     resultado = servicio.procesar_liquidacion(sesion, grabacion_de(90), TUTOR_ID)
 
     # Assert
-    gateway.transferir.assert_called_once_with(TUTOR_ID, Decimal("160"))
+    gateway.transferir.assert_called_once_with(TUTOR_ID, Decimal(160))
     assert resultado.estado_pago == "Liquidado"
     assert sesion.estado == "Completada"
 
@@ -49,5 +49,5 @@ def test_cp09_sesion_con_reembolso_no_llama_a_la_pasarela():
     # Assert
     gateway.transferir.assert_not_called()
     assert resultado.estado_pago == "No aplicable – reembolso"
-    assert resultado.monto_tutor == Decimal("0")
+    assert resultado.monto_tutor == Decimal(0)
     assert sesion.estado == "Confirmada"

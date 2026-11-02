@@ -22,6 +22,6 @@ class LiquidacionService:
         try:
             liquidacion = sesion.completar_con_grabacion(grabacion)
         except DuracionInsuficiente as error:
-            return ResultadoLiquidacion(PAGO_NO_APLICABLE, Decimal("0"), str(error))
+            return ResultadoLiquidacion(PAGO_NO_APLICABLE, Decimal(0), str(error))
         self.gateway.transferir(tutor_id, liquidacion.monto_tutor)
         return ResultadoLiquidacion(PAGO_LIQUIDADO, liquidacion.monto_tutor)
