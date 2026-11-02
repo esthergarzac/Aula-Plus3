@@ -1,0 +1,14 @@
+ID,Regla,Entrada,Resultado esperado,Prueba,Tipo,Estado
+CP-01,Anticipación,Reserva con 72 h,Sesión creada en estado Confirmada,tests/test_sesion.py::test_cp01_reserva_con_72_horas_queda_confirmada,Éxito,PASSED
+CP-02,Anticipación,Reserva con 24 h,"Rechazo: La reserva debe realizarse con al menos 48 horas de anticipación",tests/test_sesion.py::test_cp02_reserva_con_24_horas_es_rechazada,Error,PASSED
+CP-03,Anticipación,Reserva con 48 h exactas,Sesión creada,tests/test_sesion.py::test_cp03_reserva_con_exactamente_48_horas_es_aceptada,Límite,PASSED
+CP-04,Duración 70%,90 min grabados,"Completada; liquidación 200 / 40 / 160",tests/test_completar_sesion.py::test_cp04_sesion_de_90_minutos_se_completa_y_liquida,Éxito,PASSED
+CP-05,Duración 70%,45 min grabados,"Rechazo por duración insuficiente; la sesión sigue Confirmada",tests/test_completar_sesion.py::test_cp05_sesion_de_45_minutos_es_rechazada_por_duracion,Error,PASSED
+CP-06,Duración 70%,63 min (70% exacto),Sesión completada sin reembolso,tests/test_completar_sesion.py::test_cp06_sesion_de_63_minutos_exactos_se_completa,Límite,PASSED
+CP-07,Duración 70%,62 min,Rechazo por duración insuficiente,tests/test_completar_sesion.py::test_cp07_sesion_de_62_minutos_es_rechazada,Límite,PASSED
+CP-08,Liquidación (mock),Sesión de 90 min,"Pasarela llamada una vez con 160 al tutor; pago Liquidado",tests/test_liquidacion_service.py::test_cp08_sesion_completa_transfiere_160_al_tutor,Éxito,PASSED
+CP-09,Liquidación (mock),Sesión de 45 min,"Pasarela no se llama; pago No aplicable – reembolso",tests/test_liquidacion_service.py::test_cp09_sesion_con_reembolso_no_llama_a_la_pasarela,Error,PASSED
+CP-10,Límite diario,"Tutor con 4 sesiones, entra la 5ª",Asignación aceptada,tests/test_tutor.py::test_cp10_tutor_con_4_sesiones_acepta_la_quinta,Éxito,PASSED
+CP-11,Límite diario,"Tutor con 5 sesiones, entra la 6ª","Rechazo: El tutor ya alcanzó el máximo de 5 sesiones por día",tests/test_tutor.py::test_cp11_tutor_con_5_sesiones_rechaza_la_sexta,Error,PASSED
+CP-12,Persistencia,"Guardar sesión con commit y con rollback","Con commit se recupera; con rollback no existe",tests/test_repository.py::test_cp12_commit_persiste_la_sesion y test_cp12_rollback_descarta_la_sesion,Éxito,PASSED
+CP-13,Límite diario,5 sesiones un día y una nueva al día siguiente,La nueva se acepta; el conteo es por día,tests/test_tutor.py::test_cp13_el_limite_se_cuenta_por_dia,Límite,PASSED
